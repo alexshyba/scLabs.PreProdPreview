@@ -6,7 +6,6 @@
    using Sitecore;
    using Sitecore.Configuration;
    using Sitecore.Data;
-   using Sitecore.Sites;
 
    public static class Config
    {
@@ -25,11 +24,6 @@
             var stateIds = MainUtil.RemoveEmptyStrings(FilteredWorkflowStates.ToLower().Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries));
             return from stateId in stateIds where ID.IsID(stateId) select ID.Parse(stateId);
          }
-      }
-
-      public static SiteContext NoFilteringSite
-      {
-         get { return SiteContextFactory.GetSiteContext("nofiltering_reserved"); }
       }
 
       public static bool FilterByWorkflowEnabled

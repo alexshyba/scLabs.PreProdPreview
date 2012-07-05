@@ -55,6 +55,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WorkflowStateFilterDisabler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Pipelines\FilterItems\FilterByWorkflowState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

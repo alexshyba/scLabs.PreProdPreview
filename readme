@@ -1,2 +1,12 @@
 See details here:
 http://sitecoreblog.alexshyba.com/2012/07/pre-production-preview-ultimate.html
+
+To build, create "sc.lib" folder under the project root and drop Sitecore.Kernel.dll in there.
+
+For this to run, the following assets will need to be deployed:
+- the assembly into the /bin
+- the .config file into App_Config/Include
+
+Configration:
+- Depending on your Workflow configuration, the "PreProdPreview.FilteredWorkflowStates" setting will need to contain the list of workflow states that you would like the filtering logic to respect
+

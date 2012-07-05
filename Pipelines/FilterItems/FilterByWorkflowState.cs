@@ -6,7 +6,6 @@
    using Sitecore.Data.Items;
    using Sitecore.Pipelines.FilterItem;
    using Sitecore.SecurityModel;
-   using Sitecore.Sites;
    using Sitecore.StringExtensions;
 
    public class FilterByWorkflowState
@@ -18,7 +17,7 @@
 
          using (new SecurityDisabler())
          {
-            if (!site.EnableWorkflow && Config.FilterByWorkflowEnabled)
+            if (!WorkflowStateFilterDisabler.IsActive && !site.EnableWorkflow && Config.FilterByWorkflowEnabled)
             {
                var filtered = ProcessWorkflowStateFiltering(args.FilteredItem);
                args.FilteredItem = filtered;
@@ -28,9 +27,7 @@
 
       protected virtual Item ProcessWorkflowStateFiltering(Item item)
       {
-         if (Config.NoFilteringSite == null) return item;
-
-         using (new SiteContextSwitcher(Config.NoFilteringSite))
+         using (new WorkflowStateFilterDisabler())
          {
             var versions = item.Versions.GetVersions();
             if (versions.Length == 0) return item;
